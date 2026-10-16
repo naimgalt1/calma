@@ -1,0 +1,98 @@
+/* Tokens y estilos compartidos. Cada sección tiene su propio CSS en su componente. */
+
+:root {
+  --white: #faf9f6;
+  --off-white: #f2efe8;
+  --cream: #ede8de;
+  --sage: #7d9b76;
+  --sage-light: #a8c4a0;
+  --sage-dark: #4f6b4a;
+  --sage-pale: #eaf0e8;
+  --terracotta: #c4846a;
+  --terracotta-light: #e8b49e;
+  --terracotta-pale: #f5ece8;
+  --charcoal: #2c2c2c;
+  --mid: #6b6b6b;
+  --light: #a0a0a0;
+  --border: rgba(125, 155, 118, 0.15);
+
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Lato', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--white);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* Etiquetas y títulos de sección reutilizados */
+.section-label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--charcoal);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--sage-dark);
+}
+
+.sage-line {
+  width: 40px;
+  height: 2px;
+  background: var(--sage);
+  margin: 24px 0;
+}
+
+.sage-line.centered {
+  margin: 24px auto;
+}
+
+.section-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--mid);
+  max-width: 540px;
+}
+
+@media (max-width: 1024px) {
+  .section-pad {
+    padding: 80px 32px;
+  }
+}
