@@ -38,16 +38,17 @@ npm run build    # build de producción
 npm run preview  # previsualizar el build
 ```
 
-## Qué aprendí
 
-- **Liberar recursos de WebGL.** Al desmontar el componente hay que cancelar el `requestAnimationFrame`, desconectar el `ResizeObserver` y llamar a `dispose()` sobre geometrías, materiales y renderer. Si no, React StrictMode (que monta dos veces en desarrollo) deja contextos de WebGL colgando.
-- **Animar al entrar en pantalla.** `whileInView` con `viewport={{ once: true }}` resuelve la mayoría de casos sin escribir `IntersectionObserver` a mano.
-- **Animaciones de layout.** Con `layout` y `AnimatePresence`, los elementos que se filtran se reordenan con transición sin que yo tenga que calcular posiciones.
-- **Unidades distintas en cada librería.** Framer Motion mide los retrasos en segundos y el CSS en milisegundos; confundirlas dejaba animaciones desfasadas.
+## Lecciones técnicas
 
-## Retos
+- **Liberar recursos de WebGL.** Al desmontar, hay que cancelar `requestAnimationFrame`, desconectar el `ResizeObserver` y llamar a `dispose()` sobre geometrías, materiales y renderer. React StrictMode monta dos veces en desarrollo, así que sin esto quedan contextos de WebGL activos.
+- **Animar al entrar en pantalla.** `whileInView` con `viewport={{ once: true }}` cubre la mayoría de casos sin escribir un `IntersectionObserver` a mano.
+- **Animaciones de layout.** Con `layout` y `AnimatePresence`, los elementos que se filtran se reordenan con transición sin calcular posiciones manualmente.
+- **Unidades de tiempo distintas.** Framer Motion usa segundos en `delay`, mientras que CSS usa milisegundos. Mezclarlas produce animaciones desfasadas.
 
-- **Canvas que no ocupaba el hero.** El renderer de Three.js se dimensionaba con el tamaño de la ventana y no con el contenedor. Lo corregí con `ResizeObserver` sobre el propio contenedor.
-- **Horario que se salía de la pantalla.** La cuadrícula de siete días tenía un mínimo de 1000 px y en móvil obligaba a desplazarse en horizontal. En pantallas pequeñas ahora cada día se apila en una fila.
-- **Navegación en móvil.** Los enlaces se ocultaban en móvil y no había forma de llegar a ellos. Los dejé en una fila bajo el logo, y el botón principal se redujo para caber junto al logo.
-- **Imágenes de un servicio externo.** Igual que en Raíz, las descargué al proyecto y reescribí el historial de git para eliminar las referencias.
+## Problemas resueltos
+
+- **Canvas con el tamaño equivocado.** El renderer de Three.js se dimensionaba con la ventana y no con el contenedor. Se corrige con `ResizeObserver` sobre el propio contenedor.
+- **Agenda que desbordaba en móvil.** La cuadrícula de siete días tenía un mínimo de 1000 px. En pantallas pequeñas, cada día se apila en una fila.
+- **Navegación oculta en móvil.** Los enlaces se muestran como fila bajo el logo, y el botón principal se reduce para caber junto al logo.
+- **Dependencia de imágenes externas.** Igual que en Raíz: imágenes locales y historial de git reescrito para eliminar referencias.
