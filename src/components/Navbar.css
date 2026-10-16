@@ -74,7 +74,28 @@
     padding: 20px 32px;
   }
 
+  .nav {
+    flex-wrap: wrap;
+    row-gap: 14px;
+  }
+
   .nav-links {
-    display: none;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 22px;
+    overflow-x: auto;
+  }
+
+  .nav-links a {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .nav-cta {
+    padding: 9px 14px;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
   }
 }
