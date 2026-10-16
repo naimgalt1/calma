@@ -39,7 +39,7 @@
   width: 6px;
   height: 6px;
   background: var(--terracotta);
-  border-radius: 50%;
+  border-radius: 0;
 }
 
 .first-class-intro {
