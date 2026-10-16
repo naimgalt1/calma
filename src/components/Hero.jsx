@@ -9,6 +9,7 @@ export default function Hero() {
   return (
     <section id="hero" className="hero">
       <div className="hero-text">
+      <ZenCanvas />
         <Reveal>
           <p className="hero-eyebrow">Yoga &amp; Meditación · Barcelona</p>
         </Reveal>
@@ -52,7 +53,6 @@ export default function Hero() {
 
       <Reveal delay={0.2} className="hero-image">
         <img src={HERO_IMAGE} alt="Yoga en Calma" />
-        <ZenCanvas />
         <div className="hero-image-badge">
           <p>
             "El cuerpo sana con movimiento.

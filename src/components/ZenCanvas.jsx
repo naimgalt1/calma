@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 /**
- * Escena de Three.js transparente: un nudo wireframe que gira lentamente
- * y una nube de partículas que reacciona levemente al puntero.
+ * Nudo wireframe translúcido que gira lentamente y reacciona levemente al puntero.
+ * Se dibuja detrás del texto del hero y se adapta al tamaño de su contenedor.
  */
 export default function ZenCanvas() {
   const mountRef = useRef(null);
@@ -14,7 +14,6 @@ export default function ZenCanvas() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-    camera.position.z = 6;
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -25,28 +24,10 @@ export default function ZenCanvas() {
       color: 0x7d9b76,
       wireframe: true,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.6,
     });
     const knot = new THREE.Mesh(knotGeometry, knotMaterial);
     scene.add(knot);
-
-    const count = 180;
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i += 1) {
-      positions[i * 3] = (Math.random() - 0.5) * 12;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 8;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
-    }
-    const particleGeometry = new THREE.BufferGeometry();
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0xc4846a,
-      size: 0.045,
-      transparent: true,
-      opacity: 0.7,
-    });
-    const particles = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(particles);
 
     const pointer = { x: 0, y: 0 };
     const handlePointer = (event) => {
@@ -60,6 +41,9 @@ export default function ZenCanvas() {
       const height = mount.clientHeight || 1;
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
+      // En pantallas estrechas se aleja la cámara para que el nudo no se corte
+      camera.position.z = width < 600 ? 8.5 : 6;
+      knot.scale.setScalar(width < 600 ? 0.6 : 1);
       camera.updateProjectionMatrix();
     };
     const resizeObserver = new ResizeObserver(resize);
@@ -71,8 +55,7 @@ export default function ZenCanvas() {
       frameId = requestAnimationFrame(animate);
       knot.rotation.x += 0.0025;
       knot.rotation.y += 0.004 + pointer.x * 0.01;
-      particles.rotation.y += 0.0008;
-      particles.rotation.x = pointer.y * 0.3;
+      knot.rotation.z = pointer.y * 0.2;
       renderer.render(scene, camera);
     };
     animate();
@@ -83,8 +66,6 @@ export default function ZenCanvas() {
       window.removeEventListener('pointermove', handlePointer);
       knotGeometry.dispose();
       knotMaterial.dispose();
-      particleGeometry.dispose();
-      particleMaterial.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     };

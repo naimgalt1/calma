@@ -120,17 +120,29 @@
   filter: saturate(0.7) brightness(1.02);
 }
 
+/* Nudo 3D translúcido en la columna de texto, detrás del contenido */
 .zen-canvas {
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.3;
 }
 
 .zen-canvas canvas {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.hero-text {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text > *:not(.zen-canvas) {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-image-badge {
@@ -175,6 +187,10 @@
 }
 
 @media (max-width: 600px) {
+  .zen-canvas {
+    opacity: 0.25;
+  }
+
   .hero-stats {
     gap: 28px;
   }
