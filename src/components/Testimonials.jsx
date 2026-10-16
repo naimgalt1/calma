@@ -12,26 +12,19 @@ export default function Testimonials() {
           <br />
           <em>nuestros alumnos.</em>
         </h2>
-        <div className="sage-line centered" />
       </Reveal>
 
-      <div className="testimonials-grid">
-        {testimonials.map((item, index) => (
-          <Reveal key={item.name} delay={index * 0.1} className="testimonial-card">
-            <div className="testimonial-quote">"</div>
-            <p className="testimonial-stars">★★★★★</p>
-            <p className="testimonial-text">{item.text}</p>
-            <div className="testimonial-divider" />
-            <div className="testimonial-author">
-              <div className="testimonial-avatar">{item.initial}</div>
-              <div>
-                <p className="testimonial-name">{item.name}</p>
-                <p className="testimonial-detail">{item.detail}</p>
-              </div>
-            </div>
+      <ul className="quote-list">
+        {testimonials.map((item) => (
+          <Reveal as="li" key={item.name} className="quote-item">
+            <p className="quote-text">{item.text}</p>
+            <p className="quote-author">
+              <span>{item.name}</span>
+              <span className="quote-detail">{item.detail}</span>
+            </p>
           </Reveal>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

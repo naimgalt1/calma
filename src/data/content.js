@@ -1,28 +1,28 @@
 export const philosophy = [
   {
     num: '01',
-    icon: '🌿',
+    icon: 'leaf',
     title: 'Grupos reducidos',
     text: 'Máximo 10 personas por clase. Tu profesor te conoce, adapta la práctica y está contigo en cada paso del camino.',
   },
   {
     num: '02',
-    icon: '☯',
+    icon: 'group',
     title: 'Enfoque integral',
     text: 'Asana, pranayama, meditación y filosofía. No solo practicamos el cuerpo — cultivamos una forma de vivir más atenta.',
   },
   {
     num: '03',
-    icon: '🕊',
+    icon: 'wind',
     title: 'Sin presión',
     text: 'Cada cuerpo tiene su tiempo. No hay competición, no hay comparación. Llega como estás y practica como puedas.',
   },
 ];
 
 export const stats = [
-  { value: '340', label: 'Alumnos activos' },
-  { value: '12', label: 'Clases semanales' },
-  { value: '6', label: 'Profesores' },
+  { value: '10', label: 'Personas como máximo por clase' },
+  { value: '4', label: 'Estilos de práctica' },
+  { value: 'BCN', label: 'Calle Enric Granados, 28' },
 ];
 
 export const classTypes = [

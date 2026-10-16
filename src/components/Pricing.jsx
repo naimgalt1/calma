@@ -11,31 +11,31 @@ export default function Pricing() {
           Planes <em>simples.</em>
         </h2>
         <div className="sage-line centered" />
-        <p>Elige el ritmo que se adapta a tu vida. Sin permanencias, sin letra pequeña.</p>
+        <p>Elige el ritmo que se adapta a tu vida. Sin permanencias ni letra pequeña.</p>
       </Reveal>
 
-      <div className="pricing-grid">
-        {plans.map((plan, index) => (
-          <Reveal key={plan.name} delay={index * 0.1} className={`price-card ${plan.featured ? 'featured' : ''}`}>
-            {plan.featured && <p className="price-badge">Más popular</p>}
-            <p className="price-name">{plan.name}</p>
-            <p className="price-amount">
-              <sup>€</sup>
-              {plan.price}
-            </p>
-            <p className="price-period">{plan.period}</p>
-            <div className="price-divider" />
-            <ul className="price-features">
-              {plan.features.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-            <a href="#primera-clase" className={`price-cta ${plan.featured ? 'price-cta-white' : 'price-cta-outline'}`}>
-              Empezar
-            </a>
-          </Reveal>
-        ))}
-      </div>
+      <Reveal delay={0.1}>
+        <ol className="price-list">
+          {plans.map((plan) => (
+            <li key={plan.name} className={`price-row ${plan.featured ? 'featured' : ''}`}>
+              <div className="price-head">
+                <p className="price-name">{plan.name}</p>
+                <p className="price-period">{plan.period}</p>
+              </div>
+              <ul className="price-features">
+                {plan.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <p className="price-amount">
+                <span>{plan.price}</span>
+                <sup>€</sup>
+                <a href="#primera-clase" className="price-link">Empezar</a>
+              </p>
+            </li>
+          ))}
+        </ol>
+      </Reveal>
     </section>
   );
 }

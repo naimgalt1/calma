@@ -1,5 +1,6 @@
 import Reveal from './Reveal.jsx';
 import { philosophy } from '../data/content.js';
+import Icon from './Icon.jsx';
 import './Philosophy.css';
 
 export default function Philosophy() {
@@ -23,7 +24,7 @@ export default function Philosophy() {
         {philosophy.map((item, index) => (
           <Reveal key={item.title} delay={index * 0.1} className="philosophy-card">
             <p className="philosophy-num">{item.num}</p>
-            <div className="philosophy-icon">{item.icon}</div>
+            <div className="philosophy-icon"><Icon name={item.icon} size={26} /></div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </Reveal>
